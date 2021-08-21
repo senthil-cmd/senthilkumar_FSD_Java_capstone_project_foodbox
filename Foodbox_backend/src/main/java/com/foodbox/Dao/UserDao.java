@@ -1,5 +1,10 @@
 package com.foodbox.Dao;
 
-public interface UserDao {
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import com.foodbox.model.User;
+@Repository
+public interface UserDao extends CrudRepository <User , Integer> {
 
 }

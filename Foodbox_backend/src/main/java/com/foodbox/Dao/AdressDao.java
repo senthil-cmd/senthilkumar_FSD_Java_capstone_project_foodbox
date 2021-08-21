@@ -1,5 +1,9 @@
 package com.foodbox.Dao;
 
-public interface AdressDao {
+import org.springframework.data.repository.CrudRepository;
+
+import com.foodbox.model.Address;
+
+public interface AdressDao extends CrudRepository <Address , Integer>{
 
 }
