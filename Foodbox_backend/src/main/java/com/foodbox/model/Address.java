@@ -1,11 +1,12 @@
 package com.foodbox.model;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-
+@Entity
 public class Address {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -77,6 +78,9 @@ public Address(User user, String address_1, String address_2, String city, Strin
 	State = state;
 	Country = country;
 	Postal_code = postal_code;
+}
+public Address() {
+	
 }
 
 }

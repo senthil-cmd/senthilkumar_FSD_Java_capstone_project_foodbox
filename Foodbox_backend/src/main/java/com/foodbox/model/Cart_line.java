@@ -1,11 +1,12 @@
 package com.foodbox.model;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-
+@Entity
 public class Cart_line {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,5 +54,7 @@ public Cart_line(int total, Product product, int product_count, int buying_price
 	this.product_count = product_count;
 	this.buying_price = buying_price;
 }
-
+ public Cart_line() {
+	 
+ }
 }

@@ -1,11 +1,12 @@
 package com.foodbox.model;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-
+@Entity
 public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -78,5 +79,7 @@ public Product(String code, String category, String description, int price, int 
 	this.is_active = is_active;
 	this.cuisine = cuisine;
 }
-
+public Product() {
+	
+}
 }

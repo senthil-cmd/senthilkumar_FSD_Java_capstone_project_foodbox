@@ -14,6 +14,8 @@ private String name;
 
 private String description;
 
+
+
 public String getName() {
 	return name;
 }
@@ -35,5 +37,15 @@ public Cuisines(String name, String description) {
 	this.name = name;
 	this.description = description;
 }
+public Cuisines() {
+	
+}
 
+public int getId() {
+	return id;
+}
+
+public void setId(int id) {
+	this.id = id;
+}
 }
