@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +23,7 @@ import com.foodbox.model.Cuisines;
 @RestController
 @RequestMapping("api/address")
 public class AddressRest { 
-
+	@Autowired
 	AdressDao adddao;
 	@GetMapping("/")
 	public List<Address> getalladdress() {
@@ -46,27 +47,18 @@ public class AddressRest {
 		}
 		return false ;
 }
-	@PutMapping("/{id}")
-	public Address updateaddress(@RequestBody Address address,@PathVariable int id ) {
-		Optional<Address> add = adddao.findById(id);
+	@PutMapping("/")
+	public Address updateaddress(@RequestBody Address address) {
+		Optional<Address> add = adddao.findById(address.getId());
 		if(add.isPresent()) {
-			
-			Address addb = add.get();
-			addb.setAddress_1(address.getAddress_1());
-			addb.setAddress_2(address.getAddress_2());
-			addb.setCountry(address.getCountry());
-			addb.setCity(address.getCity());
-			addb.setState(address.getState());
-			addb.setPostal_code(address.getPostal_code());
-			
-			
-			return addb;
+			adddao.save(address);
+			return add.get();
 		}
 		
 		return null;
 	}
 	@GetMapping("/{id}")
-	public Address retrivecuisines(@PathVariable int id){
+	public Address retriveaddress(@PathVariable int id){
 		Optional<Address> add = adddao.findById(id);
 		if(add.isPresent()) {
 			
