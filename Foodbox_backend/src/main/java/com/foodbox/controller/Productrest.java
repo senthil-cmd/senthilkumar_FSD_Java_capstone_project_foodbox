@@ -88,5 +88,13 @@ public class Productrest {
 		List<Product> pdtavilable =  pdt.stream().filter(p->p.isIs_active()).collect(Collectors.toList());
 		return  pdtavilable;
 	}
+	@GetMapping("/bycuisines/{cuisine}")
+	public List<Product> bycuisines(@PathVariable String cuisine) {
+		
+		List<Product> pdt = (List<Product>) prdao.findAll();
+		
+		List<Product> pdtbycusines =  pdt.stream().filter(p->p.getCuisine().getName().equals(cuisine)).collect(Collectors.toList());
+		return  pdtbycusines;
+	}
 	
 	}

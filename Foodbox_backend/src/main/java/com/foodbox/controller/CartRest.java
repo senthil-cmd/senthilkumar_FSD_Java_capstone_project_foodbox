@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.foodbox.Dao.CartDao;
 import com.foodbox.model.Cart;
-import com.foodbox.model.Cart_line;
 
 @RestController
 @RequestMapping("api/cart")
