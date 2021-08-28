@@ -10,6 +10,12 @@ import { ManagecuisinesComponent } from './admin/managecuisines/managecuisines.c
 import { ManageuserComponent } from './admin/manageuser/manageuser.component';
 import { HeaderComponent } from './header/header.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HomeComponent } from './home/home.component';
+import { CartComponent } from './cart/cart.component';
+import { ContactComponent } from './contact/contact.component';
+import { AboutComponent } from './about/about.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +26,13 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     ManagecuisinesComponent,
     ManageuserComponent,
     HeaderComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    HomeComponent,
+    CartComponent,
+    ContactComponent,
+    AboutComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
