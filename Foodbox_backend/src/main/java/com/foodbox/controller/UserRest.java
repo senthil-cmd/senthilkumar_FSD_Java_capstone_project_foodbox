@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.foodbox.Dao.UserDao;
+import com.foodbox.errorhandling.InvaliedrequestException;
 import com.foodbox.model.Product;
 import com.foodbox.model.User;
 
@@ -39,14 +41,14 @@ public ResponseEntity<Object> adduser(@RequestBody User user ){
 	return ResponseEntity.created(location).build();
 }
 @PostMapping("/login")
-public User userlogin(@RequestParam("uemail") String email,@RequestParam("Pass") String password){
-User user = usrdao.findByemail(email);	
-if(!(user==null)) {
-if(user.getPassword().equals(password)){
-	return user;
+public User userlogin(@RequestBody User user){
+User userdb = usrdao.findByemail(user.getEmail());	
+if(!(userdb==null)) {
+if(userdb.getPassword().equals(user.getPassword())){
+	return userdb;
 }
 }
-return null;
+ throw new InvaliedrequestException("Invalied email or password ");
 }
 @PutMapping("/")
 public User updateuser(@RequestBody User usr) {
@@ -55,7 +57,7 @@ public User updateuser(@RequestBody User usr) {
 		usrdao.save(usr);
 		return usr;
 	}
-	return null;
+	throw new InvaliedrequestException("Invalied user id:"+usr.getId());
 }
 @DeleteMapping("/{id}")
 public boolean deleteuser(@PathVariable int id) {
@@ -64,7 +66,7 @@ public boolean deleteuser(@PathVariable int id) {
 		usrdao.deleteById(id);
 		return true;
 	}
-	return false ;
+	throw new InvaliedrequestException("Invalied user id:"+id);
 
 }
 }

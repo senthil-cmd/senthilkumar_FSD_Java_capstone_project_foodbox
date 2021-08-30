@@ -1,1 +1,46 @@
-<p>addproduct works!</p>
+<div class="row">
+    <div class="col-sm-6 offset-sm-3">
+        <h2>Login</h2>
+        <form [formGroup]="product" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="code">Product code</label>
+                <input type="text" formControlName="code" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.code.errors }" />
+                <div *ngIf="submitted && f.code.errors" class="invalid-feedback">
+                    <div *ngIf="f.code.errors.required">product code is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="category">Product category</label>
+                <input type="text" formControlName="category" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.category.errors }" />
+                <div *ngIf="submitted && f.category.errors" class="invalid-feedback">
+                    <div *ngIf="f.category.errors.required">product category is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="description">Product description</label>
+                <input type="text" formControlName="description" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.description.errors }" />
+                <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                    <div *ngIf="f.description.errors.required">product description is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="price">Product price</label>
+                <input type="text" formControlName="price" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.price.errors }" />
+                <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                    <div *ngIf="f.price.errors.required">product price is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Register
+                </button>
+                <a routerLink="/manageproduct" class="btn btn-link">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

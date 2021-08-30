@@ -16,6 +16,9 @@ import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {  HttpClientModule } from '@angular/common/http';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -32,11 +35,15 @@ import { SignupComponent } from './signup/signup.component';
     ContactComponent,
     AboutComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

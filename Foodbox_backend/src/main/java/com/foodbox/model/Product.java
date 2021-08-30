@@ -17,6 +17,7 @@ public class Product {
  private int price;
  private int quantity;
  private boolean is_active;
+ private String image;
  @OneToOne
 @JoinColumn(name = "Cuisine_id")
  private Cuisines cuisine;
@@ -68,8 +69,9 @@ public void setIs_active(boolean is_active) {
 public void setCuisine(Cuisines cuisine) {
 	this.cuisine = cuisine;
 }
+
 public Product(String code, String category, String description, int price, int quantity, boolean is_active,
-		Cuisines cuisine) {
+		String image, Cuisines cuisine) {
 	super();
 	this.code = code;
 	Category = category;
@@ -77,9 +79,16 @@ public Product(String code, String category, String description, int price, int 
 	this.price = price;
 	this.quantity = quantity;
 	this.is_active = is_active;
+	this.image = image;
 	this.cuisine = cuisine;
 }
 public Product() {
 	
+}
+public String getImage() {
+	return image;
+}
+public void setImage(String image) {
+	this.image = image;
 }
 }
