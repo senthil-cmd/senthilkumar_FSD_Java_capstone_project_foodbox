@@ -20,8 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {  HttpClientModule } from '@angular/common/http';
 import { AlertComponent } from './alert/alert.component';
 import { AddcuisinesComponent } from './admin/addcuisines/addcuisines.component';
-import { UpdatecuisinesComponent } from './admin/updatecuisines/updatecuisines.component';
-import { UpdateproductComponent } from './admin/updateproduct/updateproduct.component';
+
 
 @NgModule({
   declarations: [
@@ -41,8 +40,7 @@ import { UpdateproductComponent } from './admin/updateproduct/updateproduct.comp
     SignupComponent,
     AlertComponent,
     AddcuisinesComponent,
-    UpdatecuisinesComponent,
-    UpdateproductComponent
+ 
   ],
   imports: [
     BrowserModule,

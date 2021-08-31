@@ -50,14 +50,14 @@ if(userdb.getPassword().equals(user.getPassword())){
 }
  throw new InvaliedrequestException("Invalied email or password ");
 }
-@PutMapping("/")
-public User updateuser(@RequestBody User usr) {
-	Optional<User> ur = usrdao.findById(usr.getId());
+@PutMapping("/{id}")
+public User updateuser(@PathVariable int id,@RequestBody User user) {
+	Optional<User> ur = usrdao.findById(id);
 	if(ur.isPresent()) {
-		usrdao.save(usr);
-		return usr;
+		usrdao.save(user);
+		return user;
 	}
-	throw new InvaliedrequestException("Invalied user id:"+usr.getId());
+	throw new InvaliedrequestException("Invalied user id:"+id);
 }
 @DeleteMapping("/{id}")
 public boolean deleteuser(@PathVariable int id) {
@@ -65,6 +65,15 @@ public boolean deleteuser(@PathVariable int id) {
 	if(ur.isPresent()) {
 		usrdao.deleteById(id);
 		return true;
+	}
+	throw new InvaliedrequestException("Invalied user id:"+id);
+
+}@GetMapping("/{id}")
+public User Retervieuser(@PathVariable int id) {
+	Optional<User> ur = usrdao.findById(id);
+	if(ur.isPresent()) {
+		
+		return ur.get();
 	}
 	throw new InvaliedrequestException("Invalied user id:"+id);
 
