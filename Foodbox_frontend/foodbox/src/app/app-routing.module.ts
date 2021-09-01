@@ -5,6 +5,7 @@ import { ManagecuisinesComponent } from './admin/managecuisines/managecuisines.c
 import { ManageproductComponent } from './admin/manageproduct/manageproduct.component';
 import { ManageuserComponent } from './admin/manageuser/manageuser.component';
 import { CartComponent } from './cart/cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path:'manageproduct',component:ManageproductComponent},
   {path:'managecuisines',component:ManagecuisinesComponent},
   {path:'manageuser',component:ManageuserComponent},
-  {path:'updateuser/:id',component:SignupComponent}
+  {path:'updateuser/:id',component:SignupComponent},
+  {path:'checkout',component:CheckoutComponent}
 ];
 
 @NgModule({

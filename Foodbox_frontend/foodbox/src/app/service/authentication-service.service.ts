@@ -6,6 +6,7 @@ import{map} from 'rxjs/operators';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import { JsonPipe } from '@angular/common';
 import { Userlogin } from '../model/userlogin';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ import { Userlogin } from '../model/userlogin';
 export class AuthenticationServiceService {
   userlogin:Userlogin = new Userlogin();
   isuserloggedin:boolean =false;
-  apiURL="http://localhost:8080";
+  
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
   constructor(private http:HttpClient) { 
@@ -32,7 +33,7 @@ login(uemail:string,Pass:string) {
   const headers = { 'content-type': 'application/json'}  
   const body=JSON.stringify(this.userlogin);
   console.log(this.userlogin)
-  return this.http.post<any>(this.apiURL+`/api/user/login`,body ,{'headers':headers} )
+  return this.http.post<any>(environment.apiurl+`/user/login`,body ,{'headers':headers} )
       .pipe(map(user => {
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);

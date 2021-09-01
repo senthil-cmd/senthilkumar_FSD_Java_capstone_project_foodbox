@@ -20,6 +20,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {  HttpClientModule } from '@angular/common/http';
 import { AlertComponent } from './alert/alert.component';
 import { AddcuisinesComponent } from './admin/addcuisines/addcuisines.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { NgxPayPalModule } from 'ngx-paypal';
+
 
 
 @NgModule({
@@ -40,16 +43,22 @@ import { AddcuisinesComponent } from './admin/addcuisines/addcuisines.component'
     SignupComponent,
     AlertComponent,
     AddcuisinesComponent,
- 
+    CheckoutComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPayPalModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+ 
+
+}
