@@ -20,7 +20,8 @@ const routes: Routes = [
   {path:'signup',component:SignupComponent},
   {path:'manageproduct',component:ManageproductComponent},
   {path:'managecuisines',component:ManagecuisinesComponent},
-  {path:'manageuser',component:ManageuserComponent}
+  {path:'manageuser',component:ManageuserComponent},
+  {path:'updateuser/:id',component:SignupComponent}
 ];
 
 @NgModule({

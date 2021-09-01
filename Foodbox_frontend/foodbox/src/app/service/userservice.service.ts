@@ -23,15 +23,15 @@ export class UserserviceService {
     return this.http.post(baseurl, body,{'headers':headers});
 }
   getbyid(id:number){
-    return this.http.get<User>(`${baseurl}/${id}`,{'headers':headers});
+    return this.http.get<User>(`${baseurl}${id}`);
 
   }
 
   update(id:number,user:User){
     const body=JSON.stringify(user);
-    return this.http.put(`${baseurl}/${id}`, body,{'headers':headers});
+    return this.http.put(`${baseurl}${id}`, body,{'headers':headers});
   }
   delete(id:number){
-    return this.http.delete(`${baseurl}/${id}`,{'headers':headers});
+    return this.http.delete(`${baseurl}${id}`,{'headers':headers});
   }
 }

@@ -14,11 +14,13 @@ import { UserserviceService } from '../service/userservice.service';
 })
 export class SignupComponent implements OnInit {
   registerForm: FormGroup = this.formBuilder.group({
-    firstName: ['', Validators.required],
-    lastName: ['', Validators.required],
+    id:[],
+    firstname: ['', Validators.required],
+    lastname: ['', Validators.required],
     email: ['', Validators.required],
     contact_number: ['', Validators.required],
-    password: ['', [Validators.required, Validators.minLength(6)]]});
+    password: ['', [Validators.required, Validators.minLength(6)]],
+    role:['user']});
   loading = false;
   submitted = false;
   isAddmode!:boolean;
@@ -40,6 +42,7 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void { 
     this.id = this.route.snapshot.params['id'];
     this.isAddmode = !this.id;
+    console.log(this.isAddmode)
     if (!this.isAddmode) {
       this.userService.getbyid(this.id)
           .pipe(first())
@@ -64,7 +67,6 @@ export class SignupComponent implements OnInit {
       if (this.registerForm.invalid) {
           return;
       }
-
       this.loading = true;
       if (this.isAddmode) {
         this.createUser();
