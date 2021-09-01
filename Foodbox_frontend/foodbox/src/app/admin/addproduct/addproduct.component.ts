@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
+import { Cuisine } from 'src/app/model/cuisine';
+import { Product } from 'src/app/model/product';
 import { AlertService } from 'src/app/service/alert.service';
 import { CuisinesService } from 'src/app/service/cuisines.service';
 import { ProductService } from 'src/app/service/product.service';
@@ -24,8 +26,9 @@ private formBuilder:FormBuilder,
 private router:Router,
 private productservice:ProductService,
 private cuisineservice:CuisinesService,
-private alertservice:AlertService,
-private route:ActivatedRoute
+private alertService:AlertService,
+private route:ActivatedRoute,
+private product:Product 
 ) { 
   
 }
@@ -59,7 +62,7 @@ private route:ActivatedRoute
   this.submitted = true;
 
       // reset alerts on submit
-      this.alertservice.clear();
+      this.alertService.clear();
 
       // stop here if form is invalid
       if (this.productFrom.invalid) {
@@ -73,9 +76,39 @@ private route:ActivatedRoute
     }
 }
 createproduct(){
-
+  this.product=this.productFrom.value
+  this.cuisineservice.getbyid(this.product.cuisine.id)
+  .pipe(first())
+  .subscribe(x => this.product.cuisine=(x));
+  this.productservice.register(this.productFrom.value)
+  .pipe(first())
+  .subscribe(
+      data => {
+          this.alertService.success('Registration successful', true);
+          this.router.navigate(['/login']);
+      },
+      error => {
+          this.alertService.error(error.error.message);
+          this.loading = false;
+      });
+  
 }
 updateproduct(){
-
+  this.product=this.productFrom.value
+  this.cuisineservice.getbyid(this.product.cuisine.id)
+  .pipe(first())
+  .subscribe(x => this.product.cuisine=(x));
+  this.productservice.update(this.id,this.productFrom.value)
+          .pipe(first())
+          .subscribe(
+              data => {
+                  this.alertService.success('update successful', true);
+                  this.router.navigate(['/login']);
+              },
+              error => {
+                  this.alertService.error(error.error.message);
+                  this.loading = false;
+              });
 }
+
 }

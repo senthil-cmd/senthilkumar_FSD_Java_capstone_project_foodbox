@@ -29,7 +29,6 @@ export class SignupComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route:ActivatedRoute,
     private router: Router,
-    private authenticationService: AuthenticationServiceService,
     private userService: UserserviceService,
     private alertService: AlertService
 
