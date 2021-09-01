@@ -2,12 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { Cuisine } from 'src/app/model/cuisine';
 import { Product } from 'src/app/model/product';
 import { AlertService } from 'src/app/service/alert.service';
 import { CuisinesService } from 'src/app/service/cuisines.service';
 import { ProductService } from 'src/app/service/product.service';
-import { SignupComponent } from 'src/app/signup/signup.component';
+
 
 @Component({
   selector: 'app-addproduct',
