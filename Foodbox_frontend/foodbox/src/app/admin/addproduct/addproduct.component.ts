@@ -84,7 +84,7 @@ createproduct(){
   .subscribe(
       data => {
           this.alertService.success('Registration successful', true);
-          this.router.navigate(['/login']);
+          this.router.navigate(['/manageproduct']);
       },
       error => {
           this.alertService.error(error.error.message);
@@ -102,7 +102,7 @@ updateproduct(){
           .subscribe(
               data => {
                   this.alertService.success('update successful', true);
-                  this.router.navigate(['/login']);
+                  this.router.navigate(['/manageproduct']);
               },
               error => {
                   this.alertService.error(error.error.message);

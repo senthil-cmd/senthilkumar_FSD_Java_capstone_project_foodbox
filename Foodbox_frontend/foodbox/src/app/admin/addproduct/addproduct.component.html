@@ -1,6 +1,7 @@
 <div class="row">
     <div class="col-sm-6 offset-sm-3">
-        <h2>Login</h2>
+        <h2 *ngIf="isAddmode">Add Product</h2>
+        <h2 *ngIf="!isAddmode">Update Product</h2>
         <form [formGroup]="productFrom" (ngSubmit)="onSubmit()">
             <div class="form-group">
                 <label for="code">Product code</label>
@@ -74,7 +75,7 @@
             <div class="form-group">
                 <button [disabled]="loading" class="btn btn-primary">
                     <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                    Register
+                    Add Product
                 </button>
                 <a routerLink="/manageproduct" class="btn btn-link">Cancel</a>
             </div>

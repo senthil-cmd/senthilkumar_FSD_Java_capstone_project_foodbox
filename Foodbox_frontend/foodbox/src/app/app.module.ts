@@ -22,6 +22,12 @@ import { AlertComponent } from './alert/alert.component';
 import { AddcuisinesComponent } from './admin/addcuisines/addcuisines.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { NgxPayPalModule } from 'ngx-paypal';
+import { Address } from './model/address';
+import { Cart } from './model/cart';
+import { Cuisine } from './model/cuisine';
+import { Product } from './model/product';
+import { User } from './model/user';
+import { CartLine } from './cart-line';
 
 
 
@@ -55,7 +61,7 @@ import { NgxPayPalModule } from 'ngx-paypal';
     NgxPayPalModule
     
   ],
-  providers: [],
+  providers: [Address,Cart,Cuisine,Product,User,CartLine],
   bootstrap: [AppComponent]
 })
 export class AppModule { 
