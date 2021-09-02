@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
+import { Cuisine } from 'src/app/model/cuisine';
 import { Product } from 'src/app/model/product';
 import { AlertService } from 'src/app/service/alert.service';
 import { CuisinesService } from 'src/app/service/cuisines.service';
@@ -14,12 +15,13 @@ import { ProductService } from 'src/app/service/product.service';
   styleUrls: ['./addproduct.component.css']
 })
 export class AddproductComponent implements OnInit {
-  
+  cuisinelist:Array<Cuisine>=[];
   productFrom:FormGroup=new FormGroup({})
   loading =false;
   submitted = false;
   isAddmode!:boolean;
   id!:number;
+  cuisineid:number=0;
   constructor(
 private formBuilder:FormBuilder,
 private router:Router,
@@ -27,13 +29,12 @@ private productservice:ProductService,
 private cuisineservice:CuisinesService,
 private alertService:AlertService,
 private route:ActivatedRoute,
-private product:Product 
 ) { 
   
 }
   ngOnInit(): void {
     this.productFrom=this.formBuilder.group({
-      id:[],
+      id:[''],
       code: ['', Validators.required],
       category: ['', Validators.required],
       description: ['', Validators.required],
@@ -41,7 +42,7 @@ private product:Product
       quantity: ['', Validators.required],
       is_active: ['', Validators.required],
       image: ['', Validators.required],
-      Cuisine : this.formBuilder.group({
+      cuisine : this.formBuilder.group({
         id:['',Validators.required],
         name:[''],
         description:['']
@@ -53,6 +54,10 @@ private product:Product
         .pipe(first())
           .subscribe(x => this.productFrom.patchValue(x));
       }
+          this.cuisineservice.getall()
+          .subscribe(x =>{this.cuisinelist=x});
+          console.log(this.cuisinelist)
+      
 
   }
   get f() { return this.productFrom.controls;
@@ -75,11 +80,9 @@ private product:Product
     }
 }
 createproduct(){
-  this.product=this.productFrom.value
-  this.cuisineservice.getbyid(this.product.cuisine.id)
-  .pipe(first())
-  .subscribe(x => this.product.cuisine=(x));
+  console.log(this.productFrom.value)
   this.productservice.register(this.productFrom.value)
+  
   .pipe(first())
   .subscribe(
       data => {
@@ -93,11 +96,9 @@ createproduct(){
   
 }
 updateproduct(){
-  this.product=this.productFrom.value
-  this.cuisineservice.getbyid(this.product.cuisine.id)
-  .pipe(first())
-  .subscribe(x => this.product.cuisine=(x));
+  console.log(this.productFrom.value)
   this.productservice.update(this.id,this.productFrom.value)
+  
           .pipe(first())
           .subscribe(
               data => {
@@ -109,5 +110,4 @@ updateproduct(){
                   this.loading = false;
               });
 }
-
 }

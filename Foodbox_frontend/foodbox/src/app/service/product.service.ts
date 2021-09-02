@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Product } from '../model/product';
@@ -11,16 +11,21 @@ const headers = { 'content-type': 'application/json'}
 export class ProductService {
   constructor(private http:HttpClient) {
   }
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  } 
   getall(){
     
     return this.http.get<Product[]>(baseurl,{'headers':headers});
   }
   getallavailable(){
-    return this.http.get<Product[]>(`${baseurl}avilable`,{'headers':headers});
+    return this.http.get<Product[]>(`${baseurl}avilable`);
   }
 
   getbycuisines(cuisine:string){
-    return this.http.get<Product[]>(`${baseurl}bycuisines/${cuisine}`,{'headers':headers});
+    return this.http.get<Product[]>(`${baseurl}bycuisines/${cuisine}`);
   }
   register(Product: Product) {
     
@@ -34,10 +39,10 @@ export class ProductService {
 
  update(id:number,Product:Product){
    const body=JSON.stringify(Product);
-   return this.http.put(`${baseurl}${id}`, body,{'headers':headers});
+   return this.http.put(`${baseurl}${id}`, body,this.httpOptions);
  }
  delete(id:number){
-   return this.http.delete(`${baseurl}${id}`,{'headers':headers});
+   return this.http.delete(`${baseurl}${id}`);
  }
   updateavilable(id:number,status:string){
     return this.http.patch(`${baseurl}isavliable/${id}/${status}`,{'headers':headers});
