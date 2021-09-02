@@ -4,6 +4,7 @@ export class Product {
     id?:number;
     code:string ="";
     description:string="";
+    category:string="";
     price:number=0;
     quantity:number=0;
     is_active:boolean=false;

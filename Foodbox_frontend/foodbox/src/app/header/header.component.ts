@@ -9,7 +9,7 @@ import { AuthenticationServiceService } from '../service/authentication-service.
 })
 export class HeaderComponent implements OnInit {
   currentUser: User = new User;
-  
+  isadmin!:boolean;
   constructor(
     private router: Router,
     private authenticationService: AuthenticationServiceService
@@ -20,6 +20,9 @@ export class HeaderComponent implements OnInit {
 
 
   ngOnInit(): void {
+    if(this.currentUser.role==="admin"){
+      this.isadmin=true;
+    }
   }
   logout() {
     this.authenticationService.logout();
