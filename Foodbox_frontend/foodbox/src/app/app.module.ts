@@ -30,6 +30,9 @@ import { User } from './model/user';
 import { CartLine } from './cart-line';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatSelectModule} from '@angular/material/select';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -59,7 +62,9 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     ReactiveFormsModule,
     NgxPayPalModule,
     Ng2SearchPipeModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatSelectModule,
+    BrowserAnimationsModule
   ],
   providers: [Address,Cart,Cuisine,Product,User,CartLine],
   bootstrap: [AppComponent]

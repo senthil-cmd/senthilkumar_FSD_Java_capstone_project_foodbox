@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
   csearch(c:Cuisine){
     this.search=c.name;
   }
-  countVal:number= 0;
+  countVal:number= 1;
   
   searchitem(){
     this.productlist.filter
@@ -43,6 +43,7 @@ this.cartline.product=pdt;
 this.cartline.buying_price=pdt.price;
 this.cartline.product_count=this.countVal;
 this.cartline.total=pdt.price*this.countVal;
+console.log(this.cartline);
 }
 
 }

@@ -1,4 +1,4 @@
-<p>manageproduct works!</p>
+
 <input type="search" [(ngModel)] = "search" class="form-control" placeholder="Search..."
                         aria-label="Search">
 
@@ -23,10 +23,11 @@
             <td>{{p.description}}</td>
             <td>{{p.price}}</td>
             <td>{{p.quantity}}</td>
-            <td>{{p.productimage}}<img src="/assets/product/{{pdt.image}}.jpg" class="img-thumbnail" alt="..."></td>
+            <td>{{p.productimage}}<img src="/assets/product/{{p.image}}.jpg" class="img-thumbnail" alt="..."></td>
+            <td>{{p.cuisine.name}}</td>
             <td><mat-slide-toggle [(ngModel)]="p.is_active" (change)="changed(p)" ></mat-slide-toggle></td>
             <td><a [routerLink]="['/updateproduct',p.id]"class = "btn btn-warning" >Update Product</a></td>
-            <td><button class = "btn btn-danger" (click)=delete(p,i) >Delete Product</button></td>
+            <td><button class = "btn btn-danger" (click)=delete(p) >Delete Product</button></td>
         </tr>
     </tbody>
 </table>
