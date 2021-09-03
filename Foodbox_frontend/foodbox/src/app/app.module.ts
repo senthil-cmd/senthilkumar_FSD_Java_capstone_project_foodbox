@@ -28,8 +28,8 @@ import { Cuisine } from './model/cuisine';
 import { Product } from './model/product';
 import { User } from './model/user';
 import { CartLine } from './cart-line';
-
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -49,8 +49,7 @@ import { CartLine } from './cart-line';
     SignupComponent,
     AlertComponent,
     AddcuisinesComponent,
-    CheckoutComponent,
-    
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
@@ -58,8 +57,9 @@ import { CartLine } from './cart-line';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgxPayPalModule
-    
+    NgxPayPalModule,
+    Ng2SearchPipeModule,
+    MatSlideToggleModule
   ],
   providers: [Address,Cart,Cuisine,Product,User,CartLine],
   bootstrap: [AppComponent]

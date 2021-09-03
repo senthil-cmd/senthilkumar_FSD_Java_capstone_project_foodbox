@@ -44,7 +44,7 @@ export class ProductService {
  delete(id:number){
    return this.http.delete(`${baseurl}${id}`);
  }
-  updateavilable(id:number,status:string){
+  updateavilable(id:number,status:boolean){
     return this.http.patch(`${baseurl}isavliable/${id}/${status}`,{'headers':headers});
   }
 

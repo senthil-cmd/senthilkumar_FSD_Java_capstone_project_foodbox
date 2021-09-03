@@ -1,7 +1,7 @@
 import { Cuisine } from "./cuisine";
 
 export class Product {
-    id?:number;
+    id:number=0;
     code:string ="";
     description:string="";
     category:string="";
