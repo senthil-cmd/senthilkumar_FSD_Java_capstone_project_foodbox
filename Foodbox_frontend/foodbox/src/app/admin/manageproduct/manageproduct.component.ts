@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from 'src/app/model/product';
+import { ProductService } from 'src/app/service/product.service';
 
 @Component({
   selector: 'app-manageproduct',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageproductComponent implements OnInit {
 
-  constructor() { }
+  constructor(private productservice:ProductService) { }
 
   ngOnInit(): void {
   }
+  changed(p:Product){
+    this.productservice.updateavilable(p.id,p.is_active).subscribe
 
+  }
 }
