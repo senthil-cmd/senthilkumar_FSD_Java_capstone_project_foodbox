@@ -45,6 +45,7 @@ public class CuisinesRest {
 		return ResponseEntity.created(location).build();
 		
 	}
+	@CrossOrigin(origins = "http://localhost:4200")
 	@DeleteMapping("/{id}")
 	public boolean deletecuisines(@PathVariable int id) {
 		Optional<Cuisines> cu = cuidao.findById(id);

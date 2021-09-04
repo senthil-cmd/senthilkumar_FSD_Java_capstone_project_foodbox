@@ -113,6 +113,7 @@ public class Productrest {
 		List<Product> pdtbycusines =  pdt.stream().filter(p->p.getCuisine().getName().equals(cuisine)).collect(Collectors.toList());
 		return  pdtbycusines;
 	}
+	
 	@PostMapping("/bulk")
 	public void addproducts(@RequestBody List<Product> prd) {
 		
