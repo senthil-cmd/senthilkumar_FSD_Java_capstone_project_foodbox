@@ -25,7 +25,7 @@ export class CartlineService {
   register(Cartline:CartLine) {
     
    const body=JSON.stringify(Cartline);
-   return this.http.post(baseurl, body,this.httpOptions);
+   return this.http.post<CartLine>(baseurl, body,this.httpOptions);
 }
  getbyid(id:number){
    return this.http.get<CartLine>(`${baseurl}${id}`,this.httpOptions);

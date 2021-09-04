@@ -1,7 +1,7 @@
 import { User } from "./user";
 
 export class Address {
-    id?: number;
+    id: number=0;
     address_1:string="";
     address_2:string="";
     city:string="";

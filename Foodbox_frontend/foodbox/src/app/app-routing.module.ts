@@ -31,7 +31,7 @@ const routes: Routes = [
   {path:'updatecuisine/:id',component:AddcuisinesComponent,canActivate:[AdminGuard]},
   {path:'manageuser',component:ManageuserComponent,canActivate:[AdminGuard]},
   {path:'updateuser/:id',component:SignupComponent,canActivate:[UserGuard]},
-  {path:'checkout',component:CheckoutComponent,canActivate:[UserGuard]}
+  {path:'checkout/:id',component:CheckoutComponent,canActivate:[UserGuard]}
 ];
 
 @NgModule({

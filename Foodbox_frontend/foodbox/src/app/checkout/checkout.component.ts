@@ -1,6 +1,15 @@
 import { Component, OnInit,  } from '@angular/core';
 import { IPayPalConfig ,ICreateOrderRequest} from 'ngx-paypal';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { first } from 'rxjs/operators';
+import { AlertService } from '../service/alert.service';
+import { AuthenticationServiceService } from '../service/authentication-service.service';
+import { UserserviceService } from '../service/userservice.service';
+import { CartService } from '../service/cart.service';
+import { Cart } from '../model/cart';
+import { CartLine } from '../cart-line';
+import { AddressService } from '../service/address.service';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -8,13 +17,62 @@ import { IPayPalConfig ,ICreateOrderRequest} from 'ngx-paypal';
 })
 
 export class CheckoutComponent implements OnInit {
-  showSuccess:boolean=false;
-public payPalConfig?:IPayPalConfig
-  constructor() { }
+  checkoutForm: FormGroup = this.formBuilder.group({
+    user : this.formBuilder.group({
+    id:[''],
+    firstname: ['', Validators.required],
+    lastname: ['', Validators.required],
+    email: ['', Validators.required],
+    contact_number: ['', Validators.required],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+    role:['']
+  }), 
+    id:[],
+    address_1:['',Validators.required],
+    address_2:['',Validators.required],
+    city:['',Validators.required],
+    state:['',Validators.required],
+    country:['',Validators.required],
+    postal_code:['',Validators.required],
+    })
 
+  count: number = 0;
+  submitted = false;
+  showSuccess: boolean = false;
+  cartitems: CartLine[] = [];
+  grandTotal: number = 0
+  id: number = 0
+  cart: Cart = new Cart
+  public payPalConfig?:IPayPalConfig
+  constructor(
+    private formBuilder:FormBuilder,
+    private router:Router,
+    private alertService:AlertService,
+    private route:ActivatedRoute,
+    private cartservice:CartService,
+    private addressservice:AddressService
+  ) { }
+  get f() { return this.checkoutForm.controls;
+  }
+  
   ngOnInit(): void {
     this.initConfig();
+    this.id=this.route.snapshot.params['id'];
+    this.cartservice.getbyid(this.id).subscribe(x=>this.cart=x);
+    this.checkoutForm.patchValue(this.cart.user)
+    this.cartitems=this.cart.cartline
+    this.grandTotal=this.cart.total
+    this.count=this.cart.cartline.length
   }
+  onSubmit(){
+    this.submitted = true;
+    this.alertService.clear();
+    if (this.checkoutForm.invalid) {
+      return;
+  }
+    this.addressservice.register(this.checkoutForm.value)
+  }
+
   private initConfig(): void {
     this.payPalConfig = {
     currency: 'EUR',
@@ -25,21 +83,21 @@ public payPalConfig?:IPayPalConfig
         {
           amount: {
             currency_code: 'EUR',
-            value: '9.99',
+            value: '',
             breakdown: {
               item_total: {
                 currency_code: 'EUR',
-                value: '9.99'
+                value: '{{this.cart.total}}'
               }
             }
           },
           items: [
             {
-              name: 'Enterprise Subscription',
+              name: '',
               quantity: '1',
               category: 'DIGITAL_GOODS',
               unit_amount: {
-                currency_code: 'EUR',
+                currency_code: 'INR',
                 value: '9.99',
               },
             }
@@ -69,6 +127,7 @@ public payPalConfig?:IPayPalConfig
       console.log('OnCancel', data, actions);
     },
     onError: err => {
+      this.alertService.error("transcation is cancellled")
       console.log('OnError', err);
     },
     onClick: (data, actions) => {

@@ -32,6 +32,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatSelectModule} from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CartaddService } from './service/cartadd.service';
 
 
 @NgModule({
@@ -66,7 +67,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatSelectModule,
     BrowserAnimationsModule
   ],
-  providers: [Address,Cart,Cuisine,Product,User,CartLine],
+  providers: [Address,Cart,Cuisine,Product,User,CartaddService],
   bootstrap: [AppComponent]
 })
 export class AppModule { 
