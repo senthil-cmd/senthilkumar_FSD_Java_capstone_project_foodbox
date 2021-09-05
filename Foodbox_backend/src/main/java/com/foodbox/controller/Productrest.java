@@ -40,7 +40,7 @@ public class Productrest {
 		return  (List<Product>) prdao.findAll();
 	}
 	
-	@CrossOrigin(origins = "http://localhost:4200")
+	//@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping("/")
 	public ResponseEntity<Object> addproduct(@RequestBody Product prd ){
 		Optional<Cuisines>cu = cudao.findById(prd.getCuisine().getId());
