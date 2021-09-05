@@ -27,13 +27,13 @@ public class AddressRest {
 	@Autowired
 	AdressDao adddao;
 	@GetMapping("/")
-	@CrossOrigin(origins = "http://52.90.241.192:4200")
+	//@CrossOrigin(origins = "http://52.90.241.192:4200")
 	public List<Address> getalladdress() {
 		return  (List<Address>) adddao.findAll();
 	}
 	
 	@PostMapping("/")
-	@CrossOrigin(origins = "http://52.90.241.192:4200")
+	//@CrossOrigin(origins = "http://52.90.241.192:4200")
 	public ResponseEntity<Object> addaddress(@RequestBody Address address)
 {
 		adddao.save(address);
@@ -42,7 +42,7 @@ public class AddressRest {
 		
 }
 	@DeleteMapping("/{id}")
-	@CrossOrigin(origins = "http://52.90.241.192:4200")
+	//@CrossOrigin(origins = "http://52.90.241.192:4200")
 	public boolean deleteaddress(@PathVariable int id) {
 		Optional<Address> add = adddao.findById(id);
 		if(add.isPresent()) {
@@ -52,7 +52,7 @@ public class AddressRest {
 		return false ;
 }
 	@PutMapping("/")
-	@CrossOrigin(origins = "http://52.90.241.192:4200")
+	//@CrossOrigin(origins = "http://52.90.241.192:4200")
 	public Address updateaddress(@RequestBody Address address) {
 		Optional<Address> add = adddao.findById(address.getId());
 		if(add.isPresent()) {
@@ -63,7 +63,7 @@ public class AddressRest {
 		return null;
 	}
 	@GetMapping("/{id}")
-	@CrossOrigin(origins = "http://52.90.241.192:4200")
+	//@CrossOrigin(origins = "http://52.90.241.192:4200")
 	public Address retriveaddress(@PathVariable int id){
 		Optional<Address> add = adddao.findById(id);
 		if(add.isPresent()) {
