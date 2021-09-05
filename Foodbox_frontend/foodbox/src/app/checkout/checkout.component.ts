@@ -57,6 +57,7 @@ export class CheckoutComponent implements OnInit {
   
   ngOnInit(): void {
     this.initConfig();
+    
     this.id=this.route.snapshot.params['id'];
     this.cartservice.getbyid(this.id).subscribe(x=>this.cart=x);
     this.checkoutForm.patchValue(this.cart.user)
