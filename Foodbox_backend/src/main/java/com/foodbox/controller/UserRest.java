@@ -32,19 +32,20 @@ public class UserRest {
 UserDao usrdao;
 
 @GetMapping("/")
-@CrossOrigin(origins = "http://52.90.241.192:4200")
+//@CrossOrigin(origins = "http://52.90.241.192:4200")
+
 public List<User> getalluser() {
 	return  (List<User>) usrdao.findAll();
 }
 @PostMapping("/")
-@CrossOrigin(origins = "http://52.90.241.192:4200")
+//@CrossOrigin(origins = "http://52.90.241.192:4200")
 public ResponseEntity<Object> adduser(@RequestBody User user ){
 	usrdao.save(user);
 	URI location=ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();  
 	return ResponseEntity.created(location).build();
 }
 @PostMapping("/login")
-@CrossOrigin(origins = "http://52.90.241.192:4200")
+//@CrossOrigin(origins = "http://52.90.241.192:4200")
 public User userlogin(@RequestBody User user){
 User userdb = usrdao.findByemail(user.getEmail());	
 if(!(userdb==null)) {
@@ -64,7 +65,7 @@ public User updateuser(@PathVariable int id,@RequestBody User user) {
 	}
 	throw new InvaliedrequestException("Invalied user id:"+id);
 }
-@CrossOrigin(origins = "http://52.90.241.192:4200")
+//@CrossOrigin(origins = "http://52.90.241.192:4200")
 @DeleteMapping("/{id}")
 public boolean deleteuser(@PathVariable int id) {
 	Optional<User> ur = usrdao.findById(id);
@@ -77,7 +78,7 @@ public boolean deleteuser(@PathVariable int id) {
 	
 }
 
-@CrossOrigin(origins = "http://52.90.241.192:4200")
+//@CrossOrigin(origins = "http://52.90.241.192:4200")
 @GetMapping("/{id}")
 public User Retervieuser(@PathVariable int id) {
 	Optional<User> ur = usrdao.findById(id);
