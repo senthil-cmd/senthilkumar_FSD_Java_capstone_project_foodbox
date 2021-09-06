@@ -24,20 +24,20 @@ import com.foodbox.model.Cart_line;
 public class Cart_linerest {
 	@Autowired
 	Cart_lineDao cartldao;
-	//@CrossOrigin(origins = "http://52.90.241.192:4200")
+	@CrossOrigin(origins = "http://3.90.164.24:4200")
 	@GetMapping("/")
 	public List<Cart_line> getallcartlline() {
 		return  (List<Cart_line>) cartldao.findAll();
 	}
 	@PostMapping("/")
-	//@CrossOrigin(origins = "http://52.90.241.192:4200")
+	@CrossOrigin(origins = "http://3.90.164.24:4200")
 	public Cart_line addcart(@RequestBody Cart_line cart) {
 		cartldao.save(cart);
 		return cart;
 		
 	}
 	@GetMapping("/{id}")
-	//@CrossOrigin(origins = "http://52.90.241.192:4200")
+	@CrossOrigin(origins = "http://3.90.164.24:4200")
 	public Cart_line retrivecart(@PathVariable int id){
 		Optional<Cart_line> cl = cartldao.findById(id);
 		if(cl.isPresent()) {
@@ -48,7 +48,7 @@ public class Cart_linerest {
 		return null ;
 	}
 		@PutMapping("/")
-		//@CrossOrigin(origins = "http://52.90.241.192:4200")
+		@CrossOrigin(origins = "http://3.90.164.24:4200")
 		public Cart_line updatecart(@RequestBody Cart_line cart){
 			Optional<Cart_line> cl = cartldao.findById(cart.getId());
 			if(cl.isPresent()) {
@@ -61,7 +61,7 @@ public class Cart_linerest {
 		}
 		
 		@DeleteMapping("/{id}")
-		//@CrossOrigin(origins = "http://52.90.241.192:4200")
+		@CrossOrigin(origins = "http://3.90.164.24:4200")
 		public boolean deleteproduct(@PathVariable int id) {
 			Optional<Cart_line> cl = cartldao.findById(id);
 			if(cl.isPresent()) {
