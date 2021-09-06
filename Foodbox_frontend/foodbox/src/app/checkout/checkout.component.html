@@ -144,17 +144,19 @@
                         </div>
                     </div>
                     <br>
-                    <button class="w-100 btn btn-primary btn-lg" type="submit">Confrim and Proceed To Pay </button>
-                    
+            
+                    <ngx-paypal [config]="payPalConfig"></ngx-paypal>
 
                         
                     
                 </form>
             </div>
         </div>
+
+
     </main>
 </div>
 
-<ngx-paypal [config]="payPalConfig"></ngx-paypal>
+
 
 

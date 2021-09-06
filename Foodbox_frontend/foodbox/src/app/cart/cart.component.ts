@@ -21,6 +21,7 @@ export class CartComponent implements OnInit {
   currentUser:User=new User
   grandtotal:number=0;
   id:number=0
+
   constructor(private cartlnsrv:CartlineService,
     private cartservice:CartService,
     private userserv:UserserviceService,
@@ -33,6 +34,10 @@ export class CartComponent implements OnInit {
    this.cartadd.getitems().subscribe(data=>{this.cartlineitems=data})
    console.log(this.cartlineitems)
    this.authservice.currentUser.subscribe(x => this.currentUser = x);
+   for(let i =0;i< this.cartlineitems.length;i++){
+    this.grandtotal=this.cartlineitems[i].total+this.grandtotal
+}
+
   }
   
   deletecartline(i:number,id:number){
@@ -51,7 +56,7 @@ export class CartComponent implements OnInit {
     this.cartservice.register(this.cart).subscribe(x=>{this.cart=x;this.alertservice.success("products added to cart ",false)},
     error=>{this.alertservice.error(error.error.message+"fail to fetch server")});
     this.id=this.cart.id
-    this.router.navigate(['/checkout',this.id])
+    this.router.navigate(['/checkout/'+this.id])
   }
 }
 

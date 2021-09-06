@@ -65,14 +65,7 @@ export class CheckoutComponent implements OnInit {
     this.grandTotal=this.cart.total
     this.count=this.cart.cartline.length
   }
-  onSubmit(){
-    this.submitted = true;
-    this.alertService.clear();
-    if (this.checkoutForm.invalid) {
-      return;
-  }
-    this.addressservice.register(this.checkoutForm.value)
-  }
+
 
   private initConfig(): void {
     this.payPalConfig = {
@@ -88,7 +81,7 @@ export class CheckoutComponent implements OnInit {
             breakdown: {
               item_total: {
                 currency_code: 'EUR',
-                value: '{{this.cart.total}}'
+                value: ''
               }
             }
           },
@@ -118,6 +111,7 @@ export class CheckoutComponent implements OnInit {
       actions.order.get().then( (details:any)=> {
       console.log
         ('onApprove - you can get full order details inside onApprove: ', details)
+        this.onSubmit()
       });
     },
     onClientAuthorization: (data) => {
@@ -135,6 +129,16 @@ export class CheckoutComponent implements OnInit {
       console.log('onClick', data, actions);
     },
   };
+  }
+  onSubmit(){
+    this.submitted = true;
+    this.alertService.clear();
+    if (this.checkoutForm.invalid) {
+      return;
+  }
+    this.addressservice.register(this.checkoutForm.value)
+
+    this.alertService.error(this.cart.user.firstname +`   Thank you ur oder is cofirmed `)
   }
 }
 
