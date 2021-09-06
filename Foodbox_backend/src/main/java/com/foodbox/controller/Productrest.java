@@ -34,13 +34,13 @@ public class Productrest {
 	@Autowired
 	CusisinesDao cudao;
 	
-	@CrossOrigin(origins = "http://3.90.164.24:4200")
+	@CrossOrigin(origins = "http://3.87.26.193:4200")
 	@GetMapping("/")
 	public List<Product> getallproduct() {
 		return  (List<Product>) prdao.findAll();
 	}
 	
-	@CrossOrigin(origins = "http://3.90.164.24:4200")
+	@CrossOrigin(origins = "http://3.87.26.193:4200")
 	@PostMapping("/")
 	public ResponseEntity<Object> addproduct(@RequestBody Product prd ){
 		Optional<Cuisines>cu = cudao.findById(prd.getCuisine().getId());
@@ -49,7 +49,7 @@ public class Productrest {
 		URI location=ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(prd.getId()).toUri();  
 		return ResponseEntity.created(location).build();		
 }
-	@CrossOrigin(origins = "http://3.90.164.24:4200")
+	@CrossOrigin(origins = "http://3.87.26.193:4200")
 	@DeleteMapping("/{id}")
 	public boolean deleteproduct(@PathVariable int id) {
 		Optional<Product> prd = prdao.findById(id);
@@ -61,7 +61,7 @@ public class Productrest {
 	}
 	
 	@PutMapping("/{id}")
-	@CrossOrigin(origins = "http://3.90.164.24:4200")
+	@CrossOrigin(origins = "http://3.87.26.193:4200")
 	public Product updateproduct(@RequestBody Product prd,@PathVariable int id) {
 		Optional<Product> pt = prdao.findById(id);
 		Optional<Cuisines>cu = cudao.findById(prd.getCuisine().getId());
@@ -72,7 +72,7 @@ public class Productrest {
 		}
 		return null;
 	}
-	@CrossOrigin(origins = "http://3.90.164.24:4200")
+	@CrossOrigin(origins = "http://3.87.26.193:4200")
 	@GetMapping("/{id}")
 	public Product retrivepdt(@PathVariable int id){
 		Optional<Product> pdt = prdao.findById(id);
@@ -83,7 +83,7 @@ public class Productrest {
 		}
 		return null ;
 	}
-	@CrossOrigin(origins = "http://3.90.164.24:4200")
+	@CrossOrigin(origins = "http://3.87.26.193:4200")
 	@PatchMapping("isavliable/{id}/{status}")
 	public Product updateavilable(@PathVariable int id,@PathVariable boolean status){
 		Optional<Product> pdt = prdao.findById(id);
@@ -95,7 +95,7 @@ public class Productrest {
 		}
 		return null;
 		}
-	@CrossOrigin(origins = "http://3.90.164.24:4200")
+	@CrossOrigin(origins = "http://3.87.26.193:4200")
 	@GetMapping("/avilable")
 	public List<Product> avilableproduct() {
 		
@@ -104,7 +104,7 @@ public class Productrest {
 		List<Product> pdtavilable =  pdt.stream().filter(p->p.isIs_active()).collect(Collectors.toList());
 		return  pdtavilable;
 	}
-	@CrossOrigin(origins = "http://3.90.164.24:4200")
+	@CrossOrigin(origins = "http://3.87.26.193:4200")
 	@GetMapping("/bycuisines/{cuisine}")
 	public List<Product> bycuisines(@PathVariable String cuisine) {
 		

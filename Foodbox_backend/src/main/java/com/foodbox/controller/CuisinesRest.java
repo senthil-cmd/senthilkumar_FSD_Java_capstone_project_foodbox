@@ -32,11 +32,11 @@ public class CuisinesRest {
 	
 	// view all cuisine
 	@GetMapping("/")
-	@CrossOrigin(origins = "http://3.90.164.24:4200")
+	@CrossOrigin(origins = "http://3.87.26.193:4200")
 	public List<Cuisines> getallcuisines() {
 		return  (List<Cuisines>) cuidao.findAll();
 	}
-	@CrossOrigin(origins = "http://3.90.164.24:4200")
+	@CrossOrigin(origins = "http://3.87.26.193:4200")
 	@PostMapping("/")
 	public  ResponseEntity<Object> addcuisines(@RequestBody Cuisines cusine) {
 		
@@ -45,7 +45,7 @@ public class CuisinesRest {
 		return ResponseEntity.created(location).build();
 		
 	}
-	@CrossOrigin(origins = "http://3.90.164.24:4200")
+	@CrossOrigin(origins = "http://3.87.26.193:4200")
 	@DeleteMapping("/{id}")
 	public boolean deletecuisines(@PathVariable int id) {
 		Optional<Cuisines> cu = cuidao.findById(id);
@@ -56,7 +56,7 @@ public class CuisinesRest {
 		return false ;
 		
 	}
-	@CrossOrigin(origins = "http://3.90.164.24:4200")
+	@CrossOrigin(origins = "http://3.87.26.193:4200")
 	@GetMapping("/{id}")
 	public Cuisines retrivecuisines(@PathVariable int id){
 		Optional<Cuisines> cu = cuidao.findById(id);
@@ -67,7 +67,7 @@ public class CuisinesRest {
 		}
 		throw new InvaliedrequestException("request id is not found "+id);
 	}
-	@CrossOrigin(origins = "http://3.90.164.24:4200")
+	@CrossOrigin(origins = "http://3.87.26.193:4200")
 	@PutMapping("/{id}")
 	public Cuisines updateCusisines(@RequestBody Cuisines ucusine,@PathVariable int id ) {
 		Optional<Cuisines> cu = cuidao.findById(id);

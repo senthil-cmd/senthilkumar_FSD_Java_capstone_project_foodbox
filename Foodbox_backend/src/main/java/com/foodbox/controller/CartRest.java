@@ -22,18 +22,18 @@ import com.foodbox.model.Cart;
 public class CartRest {
 @Autowired
 CartDao cardao;
-@CrossOrigin(origins = "http://3.90.164.24:4200")
+@CrossOrigin(origins = "http://3.87.26.193:4200")
 @GetMapping("/")
 public List<Cart> getallcart() {
 	return  (List<Cart>) cardao.findAll();
 }
-@CrossOrigin(origins = "http://3.90.164.24:4200")
+@CrossOrigin(origins = "http://3.87.26.193:4200")
 @PostMapping("/")
 public Cart addcart(@RequestBody Cart cart) {
 	cardao.save(cart);
 	return cart;
 }
-@CrossOrigin(origins = "http://3.90.164.24:4200")
+@CrossOrigin(origins = "http://3.87.26.193:4200")
 @GetMapping("/{id}")
 public Cart retrivecart(@PathVariable int id){
 	Optional<Cart> cl = cardao.findById(id);
@@ -44,7 +44,7 @@ public Cart retrivecart(@PathVariable int id){
 	}
 	return null ;
 }
-@CrossOrigin(origins = "http://3.90.164.24:4200")
+@CrossOrigin(origins = "http://3.87.26.193:4200")
 @PutMapping("/")
 public Cart updatecart(@RequestBody Cart cartd){
 	Optional<Cart> cl = cardao.findById(cartd.getId());
@@ -56,7 +56,7 @@ public Cart updatecart(@RequestBody Cart cartd){
 	}
 	return null ;
 }
-@CrossOrigin(origins = "http://3.90.164.24:4200")
+@CrossOrigin(origins = "http://3.87.26.193:4200")
 @DeleteMapping("/{id}")
 public boolean deleteproduct(@PathVariable int id) {
 	Optional<Cart> cl = cardao.findById(id);
