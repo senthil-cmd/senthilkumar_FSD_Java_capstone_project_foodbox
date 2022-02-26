@@ -34,6 +34,10 @@ import {MatSelectModule} from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CartaddService } from './service/cartadd.service';
 
+import {  initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import{getDatabase,provideDatabase}from '@angular/fire/database'
+import { environment } from 'src/environments/environment';
+
 
 @NgModule({
   declarations: [
@@ -65,12 +69,16 @@ import { CartaddService } from './service/cartadd.service';
     Ng2SearchPipeModule,
     MatSlideToggleModule,
     MatSelectModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideDatabase(()=>{const database =getDatabase()
+    return database
+    })
   ],
   providers: [Address,Cart,Cuisine,Product,User,CartaddService],
   bootstrap: [AppComponent]
 })
 export class AppModule { 
- 
+
 
 }

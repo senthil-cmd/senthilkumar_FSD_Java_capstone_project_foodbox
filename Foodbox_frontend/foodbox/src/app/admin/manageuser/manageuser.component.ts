@@ -11,7 +11,7 @@ import { UserserviceService } from 'src/app/service/userservice.service';
   styleUrls: ['./manageuser.component.css']
 })
 export class ManageuserComponent implements OnInit {
-userlist:Array<User>=[]
+userlist:User[]=[];
 selected ="";
 search="";
   constructor(private userservice:UserserviceService,
@@ -19,22 +19,39 @@ search="";
     private router:Router) { }
   
   ngOnInit(): void {
-    this.userservice.getall().subscribe(result=>{this.userlist=result},
+
+
+   /* this.userservice.getall().snapshotChanges().forEach(usersnap =>{
+      usersnap.forEach(userlistfirebase => {let user= userlistfirebase.payload.toJSON()
+this.userlist.push(user as User);
+      })
+    })*/
+    this.userservice.getall().subscribe(result=>
+      {this.userlist=result
+      }  ,
       error=>{this.alertservice.error(error.error.message+"user fetch failure")
       })
   }
-  changerole(id:number,p:User) {
+    
+  changerole(id:string,p:User) {  
     this.alertservice.clear
     p.role=this.selected
-  this.userservice.update(id,p).subscribe(result=>{this.alertservice.success('user role updated')},
+  this.userservice.update(id,p)
+  
+  
+ /* subscribe(result=>{this.alertservice.success('user role updated')},
       error=>{this.alertservice.error(error.error.message+"user fetch failure")
-      })
+      })*/
  
   }
  
 
-  delete(id:number){
-    this.userservice.delete(id).subscribe(result=>{this.alertservice.success('user deleted')},
-      error=>{this.alertservice.error(error.error.message+"user fetch failure")})
+  delete(id:string){
+    this.userservice.delete(id)
+     // this.alertservice.success('user role updated')}    
+    /*.subscribe(result=>{this.alertservice.success('user deleted')},
+      error=>{this.alertservice.error(error.error.message+"user fetch failure")})*/
+
+
   }
 }

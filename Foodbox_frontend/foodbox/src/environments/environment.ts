@@ -4,7 +4,16 @@
 
 export const environment = {
   production: false,
-  apiurl :'http://3.87.26.193:8080/api'
+  apiurl :'http://3.87.26.193:8080/api',
+  firebaseConfig : {
+    apiKey: "AIzaSyB8eDRPW3k0kCxHRf5ZZI9PPJJCkPs3bc0",
+    authDomain: "iron-portfolio-333206.firebaseapp.com",
+    projectId: "iron-portfolio-333206",
+    storageBucket: "iron-portfolio-333206.appspot.com",
+    messagingSenderId: "33820362936",
+    appId: "1:33820362936:web:cbc4dbb683a026e32b8c4d",
+    measurementId: "G-PTW9M2D79D"
+  }
 };
 
 /*

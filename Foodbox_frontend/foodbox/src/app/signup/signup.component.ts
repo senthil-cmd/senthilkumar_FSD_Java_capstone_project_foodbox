@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DataSnapshot } from 'firebase/database';
 import { first } from 'rxjs/operators';
 import { AlertService } from '../service/alert.service';
 import { AuthenticationServiceService } from '../service/authentication-service.service';
@@ -24,7 +25,7 @@ export class SignupComponent implements OnInit {
   loading = false;
   submitted = false;
   isAddmode!:boolean;
-  id!:number;
+  id!:string;
   constructor(
     private formBuilder: FormBuilder,
     private route:ActivatedRoute,
@@ -43,11 +44,14 @@ export class SignupComponent implements OnInit {
     this.isAddmode = !this.id;
     console.log(this.isAddmode)
     if (!this.isAddmode) {
-      this.userService.getbyid(this.id)
-          .pipe(first())
-          .subscribe(x => this.registerForm.patchValue(x));
+      this.userService.getbyid(this.id).then((snapshot)=>{
+        if(snapshot.exists()){
+          this.registerForm.patchValue(snapshot)
+        }
+      }).catch((error)=> { console.log(error)}
+      )}      
   }
-}
+
   get f() { return this.registerForm.controls;
   }
   
@@ -75,7 +79,8 @@ export class SignupComponent implements OnInit {
 }
 private createUser(){
       this.userService.register(this.registerForm.value)
-          .pipe(first())
+      this.router.navigate(['/login']);
+          /*.pipe(first())
           .subscribe(
               data => {
                   this.alertService.success('Registration successful', true);
@@ -84,11 +89,12 @@ private createUser(){
               error => {
                   this.alertService.error(error.error.message);
                   this.loading = false;
-              });
+              });*/
   }
   private updateUser(){
     this.userService.update(this.id,this.registerForm.value)
-          .pipe(first())
+    this.router.navigate(['/login']);
+         /* .pipe(first())
           .subscribe(
               data => {
                   this.alertService.success('update successful', true);
@@ -97,7 +103,7 @@ private createUser(){
               error => {
                   this.alertService.error(error.error.message);
                   this.loading = false;
-              });
+              });*/
   }
 }
 
